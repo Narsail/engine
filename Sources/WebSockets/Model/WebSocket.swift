@@ -23,6 +23,11 @@ public final class WebSocket {
             return .make(isMasked: maskOutgoingMessages)
         }
     }
+	
+	internal enum SubProtocol {
+		case none
+		case wamp(session: WAMPSession)
+	}
 
     // MARK: All Frames
 
@@ -60,6 +65,10 @@ public final class WebSocket {
     internal let stream: Stream
 
     fileprivate let aggregator: FragmentAggregator?
+	
+	// MARK: Subprotocol
+	
+	internal var subProtocol: SubProtocol = .none
 
     // MARK: Initialization
 

@@ -34,9 +34,9 @@ enum WAMPError: Error {
 	case errorMessage(message: String)
 }
 
-enum WAMPRole {
+public enum WAMPRole {
 	
-	enum WAMPClientRole: String {
+	public enum WAMPClientRole: String {
 		// Client roles
 		case caller = "caller"
 		case callee = "callee"
@@ -48,7 +48,7 @@ enum WAMPRole {
 		}
 	}
 	
-	enum WAMPRouterRole: String {
+	public enum WAMPRouterRole: String {
 		// Route roles
 		case broker = "broker"
 		case dealer = "dealer"
@@ -181,7 +181,7 @@ class WAMPSession {
 extension WebSocket: WAMP {
 	
 	/// A combined connect method where: 1. the Websocket will establish a client connection and 2. the WAMP Protocol will send a Hello Message to the demanded realm
-	internal static func connectWithWAMP(to uri: String, with realm: String, with role: WAMPRole.WAMPClientRole, with completionHandler: @escaping (Result<WebSocket>) -> Void, with errorHandler: @escaping (Swift.Error) -> Void) {
+	public static func connectWithWAMP(to uri: String, with realm: String, with role: WAMPRole.WAMPClientRole, with completionHandler: @escaping (Result<WebSocket>) -> Void, with errorHandler: @escaping (Swift.Error) -> Void) {
 		
 		do {
 			try WebSocket.connect(to: uri, onConnect: { webSocket in
@@ -294,7 +294,7 @@ extension WebSocket: WAMP {
 		return
 	}
 	
-	func subscribe(topic: String, options: [String: Any] = [:], with eventHandler: @escaping (_ details: [String: Any], _ results: [Any]?, _ kwResults: [String: Any]?) -> Void) throws {
+	public func subscribe(topic: String, options: [String: Any] = [:], with eventHandler: @escaping (_ details: [String: Any], _ results: [Any]?, _ kwResults: [String: Any]?) -> Void) throws {
 		
 		guard let session = self.wampSession() else { throw WAMPError.wrongSubProtocol }
 		

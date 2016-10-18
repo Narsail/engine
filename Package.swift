@@ -9,6 +9,9 @@ let dependencies: [Package.Dependency] = [
 
     // CoreComponents
     .Package(url: "https://github.com/vapor/core.git", majorVersion: 1),
+    
+    // JSON Parser
+    .Package(url: "https://github.com/DanToml/Jay.git", majorVersion: 1)
 ]
 
 let package = Package(
